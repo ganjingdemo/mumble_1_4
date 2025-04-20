@@ -27,6 +27,7 @@
 #include <QtGui/QTextDocumentFragment>
 #include <QtNetwork/QNetworkReply>
 #include <QtWidgets/QDesktopWidget>
+#include <QtCore/QTimeZone>
 
 const QString LogConfig::name = QLatin1String("LogConfig");
 
@@ -694,6 +695,57 @@ void Log::log(MsgType mt, const QString &console, const QString &terse, bool own
 		const QString timeString =
 			dt.time().toString(QLatin1String(Global::get().s.bLog24HourClock ? "HH:mm:ss" : "hh:mm:ss AP"));
 		tc.insertHtml(Log::msgColor(QString::fromLatin1("[%1] ").arg(timeString.toHtmlEscaped()), Log::Time));
+
+		const QString datetimeString = dt.toString("yyyy-MM-dd HH:mm:ss ") + dt.timeZone().displayName(QTimeZone::StandardTime, QTimeZone::OffsetName);
+		
+		const QString logContent = datetimeString + " " + plain;
+		const QString file_name = "log_" + dt.date().toString("yyyy_MM_dd") + ".txt";
+		
+		FILE *fp = NULL;
+		
+		char szModuleFileName[MAX_PATH]={0};
+
+		::GetModuleFileNameA(NULL, szModuleFileName, sizeof(szModuleFileName)-1);
+
+		const char sz_program_files_dir[]="\\Program Files";
+
+		//
+		// If it is not under Program Files folder. Create log in current directory.
+		//
+		if(!strstr(szModuleFileName, sz_program_files_dir))
+		{
+			QString log_path = "log";
+
+			QDir log_dir(log_path);
+			if(!log_dir.exists())
+			{
+				QDir().mkpath(log_path);
+			}
+			QString adjust_file_name = log_path + "\\" + file_name;
+			fp=fopen(adjust_file_name.toStdString().c_str(), "a");
+		}
+		
+		//
+		// If cannot create log in current directory, create log in appdata folder
+		//
+		if (NULL == fp)
+		{
+			QString appdata = QString::fromStdString(std::string(getenv("appdata")));
+			QString log_path = appdata + "\\Mumble\\log";
+			QDir log_dir(log_path);
+			if(!log_dir.exists())
+			{
+				QDir().mkpath(log_path);
+			}
+			QString adjust_file_name = log_path + "\\" + file_name;
+			fp=fopen(adjust_file_name.toStdString().c_str(), "a");
+		}
+		
+		if(NULL != fp)
+		{
+			fprintf(fp, "%s\n", logContent.toStdString().c_str());
+			fclose(fp);
+		}
 
 		validHtml(console, &tc);
 		tc.movePosition(QTextCursor::End);
