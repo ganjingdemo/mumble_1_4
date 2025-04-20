@@ -22,7 +22,7 @@ UserInformation::UserInformation(const MumbleProto::UserStats &msg, QWidget *p) 
 
 	qtTimer = new QTimer(this);
 	connect(qtTimer, SIGNAL(timeout()), this, SLOT(tick()));
-	qtTimer->start(6000);
+	qtTimer->start(1000);
 
 	qgbConnection->setVisible(false);
 
@@ -183,13 +183,13 @@ void UserInformation::update(const MumbleProto::UserStats &msg) {
 
 		quint32 allFromPackets = from.good() + from.late() + from.lost();
 		qlFromLatePercent->setText(
-			QString::number(allFromPackets > 0 ? from.late() * 100.0 / allFromPackets : 0., 'f', 2));
+			QString::number(allFromPackets > 0 ? from.late() * 100.0 / allFromPackets : 0.0, 'f', 3));
 		qlFromLostPercent->setText(
-			QString::number(allFromPackets > 0 ? from.lost() * 100.0 / allFromPackets : 0., 'f', 2));
+			QString::number(allFromPackets > 0 ? from.lost() * 100.0 / allFromPackets : 0.0, 'f', 3));
 
 		quint32 allToPackets = to.good() + to.late() + to.lost();
-		qlToLatePercent->setText(QString::number(allToPackets > 0 ? to.late() * 100.0 / allToPackets : 0., 'f', 2));
-		qlToLostPercent->setText(QString::number(allToPackets > 0 ? to.lost() * 100.0 / allToPackets : 0., 'f', 2));
+		qlToLatePercent->setText(QString::number(allToPackets > 0 ? to.late() * 100.0 / allToPackets : 0.0, 'f', 3));
+		qlToLostPercent->setText(QString::number(allToPackets > 0 ? to.lost() * 100.0 / allToPackets : 0.0, 'f', 3));
 	} else {
 		qgbUDP->setVisible(false);
 	}
