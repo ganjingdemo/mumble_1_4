@@ -1,0 +1,30 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[submodule]
+	active = .
+[remote "origin"]
+	url = https://github.com/mumble-voip/mumble.git
+	fetch = +refs/tags/v1.4.287:refs/tags/v1.4.287
+[submodule "3rdparty/FindPythonInterpreter"]
+	url = https://github.com/Krzmbrzl/FindPythonInterpreter.git
+[submodule "celt-0.7.0-src"]
+	url = https://github.com/mumble-voip/celt-0.7.0.git
+[submodule "3rdparty/mach-override-src"]
+	url = https://github.com/mumble-voip/mach_override.git
+[submodule "3rdparty/minhook"]
+	url = https://github.com/mumble-voip/minhook.git
+[submodule "opus"]
+	url = https://gitlab.xiph.org/xiph/opus.git
+[submodule "3rdparty/rnnoise-src"]
+	url = https://github.com/mumble-voip/rnnoise.git
+[submodule "speex"]
+	url = https://github.com/mumble-voip/speex.git
+[submodule "3rdparty/speexdsp"]
+	url = https://github.com/mumble-voip/speexdsp.git
+[submodule "themes/Mumble"]
+	url = https://github.com/mumble-voip/mumble-theme.git

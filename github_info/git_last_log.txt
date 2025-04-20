@@ -1,0 +1,6 @@
+commit 5d808e287e99b402b724e411a7a0848e00956a24
+Merge: 091919b96 3522377aa
+Author: Robert Adam <dev@robert-adam.de>
+Date:   Mon Sep 12 10:21:38 2022 +0200
+
+    Merge PR #5876: Backport "CI(github-actions): Automatically publish to WinGet"
