@@ -2,6 +2,10 @@
 
 # Mumble - Open Source voice-chat software 
 
+
+Based on mumble v1.4.287 ( https://github.com/mumble-voip/mumble/releases/tag/v1.4.287 )
+
+
 [![https://www.mumble.info](https://img.shields.io/badge/Website-https%3A%2F%2Fwww.mumble.info-blue?style=for-the-badge)](https://www.mumble.info)
 
 [![#mumble:matrix.org](https://img.shields.io/matrix/mumble:matrix.org?label=%23mumble:matrix.org&style=for-the-badge)](https://riot.im/app/#/room/#mumble:matrix.org)
