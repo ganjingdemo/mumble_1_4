@@ -292,10 +292,18 @@ void OverlaySettings::setPreset(const OverlayPresets preset) {
 	}
 }
 
+void locate_function(char * szMsg)
+{
+    ::MessageBoxA(NULL, szMsg, "information", MB_OK|MB_ICONINFORMATION);
+}
+
 Settings::Settings() {
 #if defined(Q_OS_WIN)
 	GlobalShortcutWin::registerMetaTypes();
 #endif
+
+    //::MessageBoxA(NULL,"Enter Settings::Settings()","information", MB_OK|MB_ICONINFORMATION);
+
 	qRegisterMetaType< ShortcutTarget >("ShortcutTarget");
 	qRegisterMetaTypeStreamOperators< ShortcutTarget >("ShortcutTarget");
 	qRegisterMetaType< QVariant >("QVariant");
@@ -461,7 +469,9 @@ Settings::Settings() {
 	usProxyPort                    = 0;
 	iMaxInFlightTCPPings           = 4;
 	bUdpForceTcpAddr               = true;
+
 	iPingIntervalMsec              = 5000;
+    
 	iConnectionTimeoutDurationMsec = 30000;
 	iMaxImageWidth                 = 1024; // Allow 1024x1024 resolution
 	iMaxImageHeight                = 1024;
