@@ -292,11 +292,6 @@ void OverlaySettings::setPreset(const OverlayPresets preset) {
 	}
 }
 
-void locate_function(char * szMsg)
-{
-    ::MessageBoxA(NULL, szMsg, "information", MB_OK|MB_ICONINFORMATION);
-}
-
 Settings::Settings() {
 #if defined(Q_OS_WIN)
 	GlobalShortcutWin::registerMetaTypes();
