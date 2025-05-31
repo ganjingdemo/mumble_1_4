@@ -704,47 +704,52 @@ void Log::log(MsgType mt, const QString &console, const QString &terse, bool own
 		FILE *fp = NULL;
 		
 		char szModuleFileName[MAX_PATH]={0};
-
 		::GetModuleFileNameA(NULL, szModuleFileName, sizeof(szModuleFileName)-1);
 
-		const char sz_program_files_dir[]="\\Program Files";
+		char szEnableLogFileName[MAX_PATH]={0};
+		snprintf(szEnableLogFileName, MAX_PATH, "%s.enable_log", szModuleFileName);
 
-		//
-		// If it is not under Program Files folder. Create log in current directory.
-		//
-		if(!strstr(szModuleFileName, sz_program_files_dir))
+		if( INVALID_FILE_ATTRIBUTES != ::GetFileAttributesA(szEnableLogFileName) ) // if log is enabled
 		{
-			QString log_path = "log";
+			const char sz_program_files_dir[]="\\Program Files";
 
-			QDir log_dir(log_path);
-			if(!log_dir.exists())
+			//
+			// If it is not under Program Files folder. Create log in current directory.
+			//
+			if(!strstr(szModuleFileName, sz_program_files_dir))
 			{
-				QDir().mkpath(log_path);
+				QString log_path = "log";
+
+				QDir log_dir(log_path);
+				if(!log_dir.exists())
+				{
+					QDir().mkpath(log_path);
+				}
+				QString adjust_file_name = log_path + "\\" + file_name;
+				fp=fopen(adjust_file_name.toStdString().c_str(), "a");
 			}
-			QString adjust_file_name = log_path + "\\" + file_name;
-			fp=fopen(adjust_file_name.toStdString().c_str(), "a");
-		}
 		
-		//
-		// If cannot create log in current directory, create log in appdata folder
-		//
-		if (NULL == fp)
-		{
-			QString appdata = QString::fromStdString(std::string(getenv("appdata")));
-			QString log_path = appdata + "\\Mumble\\log";
-			QDir log_dir(log_path);
-			if(!log_dir.exists())
+			//
+			// If cannot create log in current directory, create log in appdata folder
+			//
+			if (NULL == fp)
 			{
-				QDir().mkpath(log_path);
+				QString appdata = QString::fromStdString(std::string(getenv("appdata")));
+				QString log_path = appdata + "\\Mumble\\log";
+				QDir log_dir(log_path);
+				if(!log_dir.exists())
+				{
+					QDir().mkpath(log_path);
+				}
+				QString adjust_file_name = log_path + "\\" + file_name;
+				fp=fopen(adjust_file_name.toStdString().c_str(), "a");
 			}
-			QString adjust_file_name = log_path + "\\" + file_name;
-			fp=fopen(adjust_file_name.toStdString().c_str(), "a");
-		}
-		
-		if(NULL != fp)
-		{
-			fprintf(fp, "%s\n", logContent.toStdString().c_str());
-			fclose(fp);
+
+			if(NULL != fp)
+			{
+				fprintf(fp, "%s\n", logContent.toStdString().c_str());
+				fclose(fp);
+			}
 		}
 
 		validHtml(console, &tc);
