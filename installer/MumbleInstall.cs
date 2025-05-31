@@ -10,7 +10,7 @@ using WixSharp;
 public class MumbleInstall : Project {
 	public MumbleInstall() {
 		var allUsersProp = new Property("ALLUSERS", "1");
-		this.Language = "en-US,cs-CZ,da-DK,de-DE,el-GR,es-ES,fi-FI,fr-FR,it-IT,ja-JP,nb-NO,nl-NL,pl-PL,pt-PT,ru-RU,sv-SE,tr-TR,zh-CN,zh-TW";
+		this.Language = "en-US,zh-CN,zh-TW";
 		this.MajorUpgradeStrategy = MajorUpgradeStrategy.Default;
 		this.MajorUpgradeStrategy.RemoveExistingProductAfter = Step.InstallInitialize;
 		this.PreserveTempFiles = true;
