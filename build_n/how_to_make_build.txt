@@ -1,0 +1,23 @@
+1. To make a client build
+
+(1) Run 01_04_generate_build_file_with_installer_no_server.bat
+
+(2) Run 01_02_enable_debug_symbol.bat
+(Optional, if you want to debug the build.)
+
+(3) Run 02_build_windows.bat
+
+
+2. Can use 
+
+03_get_commit_count.bat
+
+to get the commit count, then update the -DBUILD_NUMBER value in 01_04_generate_build_file_with_installer_no_server.bat.
+
+Then run
+
+1.(1)
+
+1.(2) (Optional, if you want to debug the build.)
+
+1.(3)
