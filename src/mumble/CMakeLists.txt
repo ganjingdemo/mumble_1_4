@@ -301,6 +301,7 @@ set(MUMBLE_SOURCES
 	"mumble.qrc"
 	"flags/mumble_flags_0.qrc"
 	"${CMAKE_SOURCE_DIR}/themes/MumbleTheme.qrc"
+	"${CMAKE_SOURCE_DIR}/themes/ClassicTheme.qrc"
 )
 
 if(static AND WIN32)
