@@ -1118,10 +1118,9 @@ void UserModel::moveUser(ClientUser *p, Channel *np) {
 	if (Global::get().s.ceExpand == Settings::ChannelsWithUsers) {
 
 		//
-		// After server connected, only allow channel auto expand once when channel expand policy is Settings::ChannelsWithUsers
+		// After server connected, only allow channel auto expand in a certain period of time when channel expand policy is Settings::ChannelsWithUsers
 		//
-		if(Global::get().bChannelExpanded == false) {
-			Global::get().bChannelExpanded  = true;
+		if(Global::get().bAutoExpandChannel) {
 			expandAll(np);
 			collapseEmpty(oc);
 		}

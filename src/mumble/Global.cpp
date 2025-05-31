@@ -120,7 +120,7 @@ Global::Global(const QString &qsConfigPath) {
 
 	bHappyEaster = false;
 
-	bChannelExpanded = false;
+	bAutoExpandChannel = true;
 
 	bQuit            = false;
 	bDebugDumpInput  = false;

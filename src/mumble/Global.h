@@ -114,7 +114,7 @@ public:
 
 	bool bHappyEaster;
 
-	bool bChannelExpanded;
+	bool bAutoExpandChannel;
 
 	static const char ccHappyEaster[];
 

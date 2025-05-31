@@ -3132,7 +3132,7 @@ void MainWindow::serverConnected() {
 #endif
 	Global::get().iCodecBeta = 0;
 
-	Global::get().bChannelExpanded = false;
+	Global::get().bAutoExpandChannel = true;
 
 #ifdef Q_OS_MAC
 	// Suppress AppNap while we're connected to a server.
