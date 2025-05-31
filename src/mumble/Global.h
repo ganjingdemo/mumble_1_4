@@ -113,6 +113,9 @@ public:
 	std::unique_ptr< ChannelListenerManager > channelListenerManager;
 
 	bool bHappyEaster;
+
+	bool bChannelExpanded;
+
 	static const char ccHappyEaster[];
 
 	Global(const QString &qsConfigPath = QString());
