@@ -301,6 +301,8 @@ set(MUMBLE_SOURCES
 	"mumble.qrc"
 	"flags/mumble_flags_0.qrc"
 	"${CMAKE_SOURCE_DIR}/themes/MumbleTheme.qrc"
+	"${CMAKE_SOURCE_DIR}/themes/ClassicSemiboldTheme.qrc"
+	"${CMAKE_SOURCE_DIR}/themes/ClassicSimHeiTheme.qrc"
 	"${CMAKE_SOURCE_DIR}/themes/ClassicTheme.qrc"
 )
 
