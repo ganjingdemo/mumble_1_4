@@ -4042,7 +4042,7 @@ The setting only applies for new messages, the already shown ones will retain th
     </message>
     <message>
         <source>Only with users</source>
-        <translation>只顯示自己所在</translation>
+        <translation>僅有用戶時</translation>
     </message>
     <message>
         <source>All</source>
